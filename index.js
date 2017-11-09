@@ -52,6 +52,14 @@ const mission = (input) => {
     rovers.push(createRover(input[i]));
     directions.push(input[i+1]);
   }
+
+  //iterate over the rovers and each rover's corresponding directions
+  for (let j=0; j<directions.length; j++) {
+    //loop through the direction string, moving the rover
+    const currentDirection = directions[j];
+    const currentRover = rovers[j];
+  }
+  return rovers;
 };
 
 const input = '5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM';
