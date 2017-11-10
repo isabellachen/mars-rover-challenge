@@ -3,24 +3,26 @@ const processInput = require('./process-input');
 const processOutput = require('./process-output');
 
 const executeDirections = (directions, rover) => {
+  //deep clone the rover
+  const movedRover = JSON.parse(JSON.stringify(rover));
   for (let i=0; i<directions.length; i++) {
-    const orientation = rover.orientation;
+    const orientation = movedRover.orientation;
     if (directions[i] === 'L') {
-      //turn the rover left from the cardinal it is currently pointing at
-      rover.orientation = cardinals[orientation]['L'];
+      //turn the movedRover left from the cardinal it is currently pointing at
+      movedRover.orientation = cardinals[orientation]['L'];
     }
     if (directions[i] === 'R') {
-      //turn the rover right from the cardinal it is currently pointing at
-      rover.orientation = cardinals[orientation]['R'];
+      //turn the movedRover right from the cardinal it is currently pointing at
+      movedRover.orientation = cardinals[orientation]['R'];
     }
     if (directions[i] === 'M') {
-      //move rover forward according to current position
-      const x = rover.position.x;
-      const y = rover.position.y;
-      rover.position = cardinals[orientation]['move'](x, y);
+      //move movedRover forward according to current position
+      const x = movedRover.position.x;
+      const y = movedRover.position.y;
+      movedRover.position = cardinals[orientation]['move'](x, y);
     }
   }
-  return rover;
+  return movedRover;
 };
 
 const runMission = (input) => {
