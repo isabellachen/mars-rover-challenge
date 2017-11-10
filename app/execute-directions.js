@@ -17,6 +17,7 @@ const executeDirections = (directions, rover) => {
       //move movedRover forward according to current position
       const x = movedRover.position.x;
       const y = movedRover.position.y;
+      //if x || y is out of bounds throw an error
       movedRover.position = cardinals[orientation]['move'](x, y);
     }
   }

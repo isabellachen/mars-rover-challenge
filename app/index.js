@@ -8,9 +8,18 @@ const runMission = (input) => {
   const directions = processInput.listDirections(input);
   const movedRovers = [];
   //iterate over the rovers and each rover's corresponding directions
-  for (let j=0; j<directions.length; j++) {
-    movedRovers.push(executeDirections(directions[j], rovers[j]));
+  for (let i=0; i<directions.length; i++) {
+    movedRovers.push(executeDirections(directions[i], rovers[i]));
   }
+
+  for (let j=0; j<movedRovers.length; j++) {
+    if ((movedRovers[j].position.x > plateauBounds.x || movedRovers[j].position.x < 0)
+        ||(movedRovers[j].position.y > plateauBounds.y || movedRovers[j].position.x < 0)) {
+      throw 'rover ' + j + ' is out of bounds.' ;
+    }
+  }
+
+  console.log(movedRovers);
   const result = processOutput(movedRovers);
   return result;
 };
