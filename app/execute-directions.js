@@ -1,6 +1,17 @@
 const cardinals = require('./cardinals');
 
-const executeDirections = (directions, rover) => {
+const checkCollisions = (x, y, movedRovers) => {
+  if (movedRovers.length > 0) {
+    for (let i=0; i<movedRovers.length; i++) {
+      if (movedRovers[i].position.x === x && movedRovers[i].position.y === y) {
+        const roverId = i + 1;
+        throw 'collision detected with rover ' + roverId;
+      }
+    }
+  }
+};
+
+const executeDirections = (directions, rover, movedRovers) => {
   //deep clone the rover
   const movedRover = JSON.parse(JSON.stringify(rover));
   for (let i=0; i<directions.length; i++) {
@@ -15,10 +26,9 @@ const executeDirections = (directions, rover) => {
     }
     if (directions[i] === 'M') {
       //move movedRover forward according to current position
-      const x = movedRover.position.x;
-      const y = movedRover.position.y;
-      //if x || y is out of bounds throw an error
-      movedRover.position = cardinals[orientation]['move'](x, y);
+
+      movedRover.position = cardinals[orientation]['move'](movedRover.position.x, movedRover.position.y);
+      checkCollisions(movedRover.position.x, movedRover.position.y, movedRovers);
     }
   }
   return movedRover;
