@@ -1,5 +1,6 @@
 const cardinals = require('./cardinals');
 const createRover = require('./rover');
+const processInput = require('./process-input');
 
 const mission = (input) => {
   input = input.split('\n');
@@ -36,6 +37,8 @@ const mission = (input) => {
   }
   return rovers;
 };
+
+module.exports = mission;
 
 const input = '5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM';
 
