@@ -1,47 +1,5 @@
-const cardinals = {
-  N: {
-    L: 'W',
-    R: 'E',
-    move: (x, y)=>{
-      return {x:x, y:y+1};
-    },
-  },
-  E: {
-    L: 'N',
-    R: 'S',
-    move: (x, y)=>{
-      return {x:x+1, y:y};
-    },
-  },
-  S: {
-    L: 'E',
-    R: 'W',
-    move: (x, y)=>{
-      return {x:x, y:y-1};
-    },
-  },
-  W: {
-    L: 'S',
-    R: 'N',
-    move: (x, y)=>{
-      return {x:x-1, y:y};
-    },
-  },
-};
-
-const createRover = (startPos) => {
-  const x = parseInt(startPos.split(' ')[0]);
-  const y = parseInt(startPos.split(' ')[1]);
-  const orientation = startPos.split(' ')[2];
-  const rover = {
-    position: {
-      x: x,
-      y: y,
-    },
-    orientation: orientation,
-  };
-  return rover;
-};
+const cardinals = require('./cardinals');
+const createRover = require('./rover');
 
 const mission = (input) => {
   input = input.split('\n');
@@ -55,9 +13,9 @@ const mission = (input) => {
 
   //iterate over the rovers and each rover's corresponding directions
   for (let j=0; j<directions.length; j++) {
-    //loop through the direction string, moving the rover
     const currentDirection = directions[j];
     const currentRover = rovers[j];
+    //loop through the direction string, moving the rover
     for (let cmd=0; cmd<currentDirection.length; cmd++) {
       const orientation = currentRover.orientation;
       if (currentDirection[cmd] === 'L') {
@@ -69,7 +27,7 @@ const mission = (input) => {
         currentRover.orientation = cardinals[orientation]['R'];
       }
       if (currentDirection[cmd] === 'M') {
-        //e.g. if rover orientation is 'N', the rover's position y property should be y+1
+        //move rover forward according to current position
         const x = currentRover.position.x;
         const y = currentRover.position.y;
         currentRover.position = cardinals[orientation]['move'](x, y);
