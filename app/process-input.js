@@ -1,19 +1,43 @@
 const createRover = require('./rover');
 
-const processInput = (input) => {
-  const output = {};
-  input = input.split('\n');
-  output.plateauBounds = input[0];
-  output.rovers = [];
-  output.directions = [];
-  for (let i=1; i<input.length; i=i+2) {
-    output.rovers.push(createRover(input[i]));
-    output.directions.push(input[i+1]);
-  }
-  return output;
+
+const establishBounds = (input) => {
+  const bounds = {};
+  input = input.split('\n')[0].split(' ');
+  bounds.x = input[0];
+  bounds.y = input[1];
+  return bounds;
 };
 
-const output = processInput('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
-console.log(output);
+const createRovers = (input) => {
+  const rovers = [];
+  input = input.split('\n');
+  for (let i=1; i<input.length; i=i+2) {
+    rovers.push(createRover(input[i]));
+  }
+  return rovers;
+};
 
-module.exports = processInput;
+const listDirections = (input) => {
+  const directions = [];
+  input = input.split('\n');
+  for (let i=1; i<input.length; i=i+2) {
+    directions.push(input[i+1]);
+  }
+  return directions;
+};
+
+// const bounds = establishBounds('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
+// console.log(bounds);
+//
+// const rovers = createRovers('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
+// console.log(rovers);
+//
+// const directions = listDirections('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
+// console.log(directions);
+
+module.exports = {
+  establishBounds,
+  createRovers,
+  listDirections,
+};

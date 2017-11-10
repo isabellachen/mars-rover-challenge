@@ -3,14 +3,10 @@ const createRover = require('./rover');
 const processInput = require('./process-input');
 
 const mission = (input) => {
-  input = input.split('\n');
-  const plateauBounds = input[0];
-  const rovers = [];
-  const directions = [];
-  for (let i=1; i<input.length; i=i+2) {
-    rovers.push(createRover(input[i]));
-    directions.push(input[i+1]);
-  }
+  // input = input.split('\n');
+  const plateauBounds = processInput.establishBounds(input);
+  const rovers = processInput.createRovers(input);
+  const directions = processInput.listDirections(input);
 
   //iterate over the rovers and each rover's corresponding directions
   for (let j=0; j<directions.length; j++) {
@@ -44,4 +40,4 @@ const input = '5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM';
 
 const result = mission(input);
 
-console.log(result);
+console.log('result: ',result);
