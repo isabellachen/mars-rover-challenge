@@ -15,8 +15,7 @@ const runMission = (input) => {
   for (let j=0; j<movedRovers.length; j++) {
     if ((movedRovers[j].position.x > plateauBounds.x || movedRovers[j].position.x < 0)
         ||(movedRovers[j].position.y > plateauBounds.y || movedRovers[j].position.x < 0)) {
-      const roverId = j + 1;
-      throw 'rover ' + roverId + ' is out of bounds.' ;
+      throw 'rover at position ' + j + ' is out of bounds.' ;
     }
   }
 
