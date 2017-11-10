@@ -26,15 +26,6 @@ const listDirections = (input) => {
   return directions;
 };
 
-// const bounds = establishBounds('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
-// console.log(bounds);
-//
-// const rovers = createRovers('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
-// console.log(rovers);
-//
-// const directions = listDirections('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')
-// console.log(directions);
-
 module.exports = {
   establishBounds,
   createRovers,
