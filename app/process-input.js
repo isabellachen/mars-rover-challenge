@@ -1,6 +1,5 @@
 const createRover = require('./rover');
 
-
 const establishBounds = (input) => {
   const bounds = {};
   input = input.split('\n')[0].split(' ');
