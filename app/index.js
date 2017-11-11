@@ -24,8 +24,3 @@ const runMission = (input) => {
 };
 
 module.exports = runMission;
-
-// const input = '5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM';
-const input = '5 5\n1 2 N\nLMLMLMLMM\n1 2 N\nLMLMLMLMM';
-const result = runMission(input);
-console.log(result);

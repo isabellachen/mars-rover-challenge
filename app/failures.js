@@ -8,4 +8,6 @@ const checkCollisions = (x, y, movedRovers) => {
   }
 };
 
-module.exports = checkCollisions;
+module.exports = {
+  checkCollisions,
+};
