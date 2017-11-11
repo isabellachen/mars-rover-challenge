@@ -1,6 +1,7 @@
 const processInput = require('./process-input');
 const processOutput = require('./process-output');
 const executeDirections = require('./execute-directions');
+const failures = require('./failures');
 
 const runMission = (input) => {
   const plateauBounds = processInput.establishBounds(input);
@@ -13,10 +14,8 @@ const runMission = (input) => {
   }
 
   for (let j=0; j<movedRovers.length; j++) {
-    if ((movedRovers[j].position.x > plateauBounds.x || movedRovers[j].position.x < 0)
-        ||(movedRovers[j].position.y > plateauBounds.y || movedRovers[j].position.x < 0)) {
-      throw 'rover at position ' + j + ' is out of bounds.' ;
-    }
+    const inBounds = failures.checkBounds(movedRovers[j], plateauBounds);
+    if (!inBounds) throw 'rover at position ' + j + ' is out of bounds.';
   }
 
   const result = processOutput(movedRovers);
