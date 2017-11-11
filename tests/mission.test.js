@@ -2,6 +2,8 @@ const runMission = require('../app/index');
 const cardinals = require('../app/cardinals');
 const processInput = require('../app/process-input');
 const processOutput = require('../app/process-output');
+const executeDirections = require('../app/execute-directions');
+const failures = require('../app/failures');
 const rover = require('../app/rover');
 
 test('test input matches expected output', () => {
@@ -29,5 +31,22 @@ describe('create rover object from input string', () => {
 
   test('creates rover object with nested position object and orientation', () => {
     expect(rover.createRover('1 2 N')).toEqual({position: {'x': 1, 'y': 2}, 'orientation': 'N'});
+  });
+});
+
+describe('checks for failures like collisions and out of bounds', () => {
+  test('checks for collisions', () => {
+    const runCollision = () => {
+      failures.checkCollisions(1, 3, [{position:{x:1, y:3}}]);
+    };
+    expect(runCollision).toThrow();
+  });
+
+  test('check bounds returns false when out of bounds', () => {
+    expect(failures.checkBounds({position:{x:5, y:6}}, {x:5, y:5})).toBe(false);
+  });
+
+  test('check bounds returns true when rover is in bounds', () => {
+    expect(failures.checkBounds({position:{x:3, y:3}}, {x:5, y:5})).toBe(true);
   });
 });
