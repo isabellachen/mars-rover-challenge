@@ -7,18 +7,17 @@ const runMission = (input) => {
   const plateauBounds = processInput.establishBounds(input);
   const rovers = processInput.createRovers(input);
   const directions = processInput.listDirections(input);
-  const movedRovers = [];
+  const movedRoversArr = [];
   //iterate over the rovers and each rover's corresponding directions
   for (let i=0; i<directions.length; i++) {
-    movedRovers.push(executeDirections(directions[i], rovers[i], movedRovers));
+    movedRoversArr.push(executeDirections(directions[i], rovers[i], movedRoversArr));
   }
-
-  for (let j=0; j<movedRovers.length; j++) {
-    const inBounds = failures.checkBounds(movedRovers[j], plateauBounds);
+  for (let j=0; j<movedRoversArr.length; j++) {
+    const inBounds = failures.checkBounds(movedRoversArr[j], plateauBounds);
     if (!inBounds) throw 'rover at position ' + j + ' is out of bounds.';
   }
 
-  const result = processOutput(movedRovers);
+  const result = processOutput(movedRoversArr);
   return result;
 };
 

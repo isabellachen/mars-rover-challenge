@@ -1,7 +1,7 @@
 const cardinals = require('./cardinals');
 const failures = require('./failures');
 
-const executeDirections = (directions, rover, movedRovers) => {
+const executeDirections = (directions, rover, movedRoversArr) => {
   //deep clone the rover
   const movedRover = JSON.parse(JSON.stringify(rover));
   for (let i=0; i<directions.length; i++) {
@@ -17,7 +17,7 @@ const executeDirections = (directions, rover, movedRovers) => {
     if (directions[i] === 'M') {
       //move movedRover forward according to current position
       movedRover.position = cardinals[orientation]['move'](movedRover.position.x, movedRover.position.y);
-      failures.checkCollisions(movedRover.position.x, movedRover.position.y, movedRovers);
+      failures.checkCollisions(movedRover.position.x, movedRover.position.y, movedRoversArr);
     }
   }
   return movedRover;

@@ -1,5 +1,4 @@
 const runMission = require('../app/index');
-const cardinals = require('../app/cardinals');
 const processInput = require('../app/process-input');
 const processOutput = require('../app/process-output');
 const executeDirections = require('../app/execute-directions');
@@ -11,7 +10,7 @@ test('test input matches expected output', () => {
 });
 
 describe('functions to process string input', () => {
-  test('establishing bounds with bounds object with keys x, y', () => {
+  test('establishes bounds with with keys x, y', () => {
     expect(processInput.establishBounds('5 5\n1 2 N\nLMLMLMLMM')).toEqual({'x': 5, 'y': 5});
   });
 
@@ -48,5 +47,24 @@ describe('checks for failures like collisions and out of bounds', () => {
 
   test('check bounds returns true when rover is in bounds', () => {
     expect(failures.checkBounds({position:{x:3, y:3}}, {x:5, y:5})).toBe(true);
+  });
+});
+
+describe('execute directions and outputs the final position of the rover', () => {
+  test('should not modify original rover', () => {
+    const rover = {position: { x: 1, y: 2 }, orientation: 'N'};
+    executeDirections('LMLMLMLMM', rover, []);
+    expect(rover).toEqual(rover);
+  });
+
+  test('turns rover right and left', () => {
+    const rover = {position: { x: 1, y: 2 }, orientation: 'N'};
+    expect(executeDirections('L', rover, [])).toEqual({position: { x: 1, y: 2 }, orientation: 'W'});
+    expect(executeDirections('R', rover, [])).toEqual({position: { x: 1, y: 2 }, orientation: 'E'});
+  });
+
+  test('moves rover forward according to current orientation', () => {
+    const rover = {position: { x: 1, y: 2 }, orientation: 'N'};
+    expect(executeDirections('M', rover, [])).toEqual({position: { x: 1, y: 3 }, orientation: 'N'});
   });
 });
