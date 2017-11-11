@@ -1,10 +1,10 @@
-const createRover = require('./rover');
+const rover = require('./rover');
 
 const establishBounds = (input) => {
   const bounds = {};
   input = input.split('\n')[0].split(' ');
-  bounds.x = input[0];
-  bounds.y = input[1];
+  bounds.x = parseInt(input[0]);
+  bounds.y = parseInt(input[1]);
   return bounds;
 };
 
@@ -12,7 +12,7 @@ const createRovers = (input) => {
   const rovers = [];
   input = input.split('\n');
   for (let i=1; i<input.length; i=i+2) {
-    rovers.push(createRover(input[i]));
+    rovers.push(rover.createRover(input[i]));
   }
   return rovers;
 };
