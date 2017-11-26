@@ -12,7 +12,9 @@ const runMission = (input) => {
   for (let i=0; i<directions.length; i++) {
     movedRoversArr.push(executeDirections(directions[i], rovers[i], movedRoversArr));
   }
+
   for (let j=0; j<movedRoversArr.length; j++) {
+    //improvements - checkBounds when executing directions instead
     const inBounds = failures.checkBounds(movedRoversArr[j], plateauBounds);
     if (!inBounds) throw 'rover at position ' + j + ' is out of bounds.';
   }

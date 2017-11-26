@@ -6,6 +6,7 @@ const failures = require('../app/failures');
 const rover = require('../app/rover');
 
 test('test input matches expected output', () => {
+  //improvements - trim line break
   expect(runMission('5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM')).toBe('1 3 N\n5 1 E\n');
 });
 
@@ -67,4 +68,6 @@ describe('execute directions and outputs the final position of the rover', () =>
     const rover = {position: { x: 1, y: 2 }, orientation: 'N'};
     expect(executeDirections('M', rover, [])).toEqual({position: { x: 1, y: 3 }, orientation: 'N'});
   });
+
+  //improvements - also test for move S, E, W...
 });

@@ -1,5 +1,10 @@
 # Mars Rover Coding Challenge
 
+## Running the tests
+Unit tests are with Jest. Simply cd into this repo's root and `npm t`. The very first test checks that the solution works correctly with the supplied data.
+
+## Description
+
 A squad of robotic rovers are to be landed by NASA on a plateau on Mars.
 
 This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.
@@ -17,7 +22,7 @@ Assume that the square directly North from (x, y) is (x, y 1).
 - Each rover will be finished sequentially, which means that the second rover won’t start to move until the first one has finished moving.
 
 ## OUTPUT:
-The output for each rover should be its final co-ordinates and heading.
+- The output for each rover should be its final co-ordinates and heading.
 
 ## INPUT AND OUTPUT
 
